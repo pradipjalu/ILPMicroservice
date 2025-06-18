@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.ILP.Web.Models;
 using Microsoft.ILP.Web.Services;
+using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Net.Http;
 
@@ -20,8 +21,8 @@ namespace Microsoft.ILP.Web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var users = await userService.GetUsersAsync();
-
+            var users = JsonConvert.DeserializeObject<IEnumerable<UserModel>>(await userService.GetUsersAsync());
+            
             return View();
         }
 

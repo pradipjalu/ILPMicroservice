@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.ILP.Web.Services;
+using Microsoft.ILP.Web.Settings;
+using System.Runtime;
 
 namespace Microsoft.ILP.Web
 {
@@ -11,6 +13,8 @@ namespace Microsoft.ILP.Web
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.Configure<UserServiceEndpoints>(builder.Configuration.GetSection("UserServiceEndpoints"));
 
             //HttpClinet            
             builder.Services.AddHttpClient<IUserService, UserService>("UserService");

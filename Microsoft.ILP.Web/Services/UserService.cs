@@ -1,19 +1,27 @@
-﻿namespace Microsoft.ILP.Web.Services
+﻿using Microsoft.Extensions.Options;
+using Microsoft.ILP.Web.Settings;
+using System.Runtime;
+
+namespace Microsoft.ILP.Web.Services
 {
     public class UserService : IUserService
     {
-        private readonly HttpClient client;        
+        private readonly HttpClient client;
 
-        public UserService(HttpClient client)
+        private readonly UserServiceEndpoints userServiceEndpoints;
+
+
+        public UserService(HttpClient client, IOptions<UserServiceEndpoints> options)
         {
             this.client = client;
-            this.client.BaseAddress = new Uri("https://localhost:7279/");
+            this.userServiceEndpoints = options.Value;
+            this.client.BaseAddress = new Uri(this.userServiceEndpoints.BaseAddress);
             this.client.DefaultRequestHeaders.Add("Accept", "application/json");
         }
 
         public async Task<string> GetUsersAsync()
         {
-            var response = await this.client.GetAsync("user");
+            var response = await this.client.GetAsync(this.userServiceEndpoints.GetUsers);
 
             if (response.IsSuccessStatusCode)
             {
