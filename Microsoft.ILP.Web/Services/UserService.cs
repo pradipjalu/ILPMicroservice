@@ -11,10 +11,10 @@ namespace Microsoft.ILP.Web.Services
         private readonly UserServiceEndpoints userServiceEndpoints;
 
 
-        public UserService(HttpClient client, IOptions<UserServiceEndpoints> options)
+        public UserService(HttpClient client, UserServiceEndpoints userServiceEndpoints)
         {
             this.client = client;
-            this.userServiceEndpoints = options.Value;
+            this.userServiceEndpoints = userServiceEndpoints;
             this.client.BaseAddress = new Uri(this.userServiceEndpoints.BaseAddress);
             this.client.DefaultRequestHeaders.Add("Accept", "application/json");
         }

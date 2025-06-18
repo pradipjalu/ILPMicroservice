@@ -14,7 +14,7 @@ namespace Microsoft.ILP.Web
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
-            builder.Services.Configure<UserServiceEndpoints>(builder.Configuration.GetSection("UserServiceEndpoints"));
+            builder.Services.AddSingleton(builder.Configuration.GetSection("UserServiceEndpoints").Get<UserServiceEndpoints>());
 
             //HttpClinet            
             builder.Services.AddHttpClient<IUserService, UserService>("UserService");
