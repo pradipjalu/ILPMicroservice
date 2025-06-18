@@ -19,7 +19,9 @@ namespace Microsoft.ILP.UserService.Controllers
         {
             var users = new List<UserEntity>() { 
                 new UserEntity(){ Id=1, Name ="Pradip"},
-                new UserEntity(){ Id=1, Name ="Jalu"},
+                new UserEntity(){ Id=2, Name ="Jalu"},
+                new UserEntity(){ Id=3, Name ="Srikanth"},
+                new UserEntity(){ Id=4, Name ="Raju"},
             };
 
             return await Task.FromResult(users);

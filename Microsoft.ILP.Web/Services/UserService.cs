@@ -10,7 +10,6 @@ namespace Microsoft.ILP.Web.Services
 
         private readonly UserServiceEndpoints userServiceEndpoints;
 
-
         public UserService(HttpClient client, UserServiceEndpoints userServiceEndpoints)
         {
             this.client = client;
