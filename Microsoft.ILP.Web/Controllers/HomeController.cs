@@ -9,14 +9,12 @@ namespace Microsoft.ILP.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> logger;
-        //private readonly IHttpClientFactory httpClientFactory;
 
         private readonly IUserService userService;
 
-        public HomeController(ILogger<HomeController> logger, IHttpClientFactory httpClientFactory, IUserService userService)
+        public HomeController(ILogger<HomeController> logger, IUserService userService)
         {
             this.logger = logger;
-            //this.httpClientFactory = httpClientFactory;
             this.userService = userService;
         }
 
@@ -25,32 +23,6 @@ namespace Microsoft.ILP.Web.Controllers
             var users = await userService.GetUsersAsync();
 
             return View();
-
-            //using (var client = httpClientFactory.CreateClient("ILPMicroserviceClient"))
-            //{
-            //    HttpResponseMessage usersResponse = await client.GetAsync("endpoint");
-
-            //    if (usersResponse.IsSuccessStatusCode)
-            //    {
-            //        var users = await usersResponse.Content.ReadAsStringAsync();
-            //    }
-
-            //    HttpResponseMessage productsResponse = await client.GetAsync("endpoint");
-
-            //    if (productsResponse.IsSuccessStatusCode)
-            //    {
-            //        var products = await productsResponse.Content.ReadAsStringAsync();
-            //    }
-
-            //    HttpResponseMessage ordersResponse = await client.GetAsync("endpoint");
-
-            //    if (ordersResponse.IsSuccessStatusCode)
-            //    {
-            //        var orders = await ordersResponse.Content.ReadAsStringAsync();
-            //    }
-
-            //    return View();
-            //}
         }
 
         public IActionResult Privacy()

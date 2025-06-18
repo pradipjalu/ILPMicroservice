@@ -12,16 +12,8 @@ namespace Microsoft.ILP.Web
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
-            //HttpClinet
-            //1. //builder.Services.AddHttpClient();
-            //2. //builder.Services.AddHttpClient("ILPMicroserviceClient", client =>
-            //{
-            //    client.BaseAddress = new Uri("https://api.example.com/");
-            //    client.DefaultRequestHeaders.Add("Accept", "application/json");
-            //});
-
-            //3. 
-            builder.Services.AddHttpClient<IUserService, UserService>();
+            //HttpClinet            
+            builder.Services.AddHttpClient<IUserService, UserService>("UserService");
 
             var app = builder.Build();
 
